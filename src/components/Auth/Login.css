@@ -1,0 +1,15 @@
+.auth {
+  margin: 0 auto;
+  margin-top: 250px;
+}
+
+.auth button {
+  width: 400px;
+  height: 50px;
+  border-radius: 25px;
+  outline: none;
+}
+
+.auth button img {
+  width: 40px;
+}
