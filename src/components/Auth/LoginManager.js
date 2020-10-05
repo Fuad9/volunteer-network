@@ -15,11 +15,9 @@ export const handleGoogleSignIn = () => {
     .signInWithPopup(googleProvider)
     .then((res) => {
       const signedInUser = {
-        // isSignedIn: true,
         name: res.user.displayName,
         email: res.user.email,
         photo: res.user.photoURL,
-        // success: true,
       };
       storeAuthToken();
       return signedInUser;

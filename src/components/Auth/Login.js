@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { AuthContext } from "../../App";
 import google from "../../Images/logos/google.png";
 import { handleGoogleSignIn, initializeLoginFramework } from "./LoginManager";
 import "./Login.css";
+import logo from "../../Images/logos/Group 1329.png";
 
 const Login = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(AuthContext);
-  const [user, setUser] = useState({
+  const [setLoggedInUser] = useContext(AuthContext);
+  const [setUser] = useState({
     isSignedIn: false,
     name: "",
     email: "",
@@ -36,6 +37,9 @@ const Login = () => {
 
   return (
     <>
+      <Link to="/home">
+        <img style={{ width: "200px" }} src={logo} alt="" />
+      </Link>
       <div className="auth">
         <button onClick={googleSignIn}>
           <img src={google} alt="" />

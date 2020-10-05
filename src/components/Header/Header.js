@@ -1,23 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../App";
-import {
-  handleGoogleSignIn,
-  initializeLoginFramework,
-} from "../Auth/LoginManager";
 import "./Header.css";
 import logo from "../../Images/logos/Group 1329.png";
 
 const Header = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(AuthContext);
-
-  initializeLoginFramework();
-
-  const handleSignIn = () => {
-    handleGoogleSignIn().then((res) => {
-      setLoggedInUser(res);
-    });
-  };
+  const [loggedInUser] = useContext(AuthContext);
 
   const handleSlide = () => {
     document.querySelector(".nav-links").classList.toggle("nav-active");
@@ -67,6 +55,18 @@ const Header = () => {
             Events
           </Link>
         </li>
+        <li>
+          <button
+            style={{
+              textDecoration: "none",
+              color: "white",
+              background: "#03a9f4",
+              outline: "none",
+            }}
+          >
+            <Link to="/admin">Admin</Link>
+          </button>
+        </li>
         {!loggedInUser ? (
           <li className="d-flex">
             <button
@@ -77,18 +77,7 @@ const Header = () => {
                 outline: "none",
               }}
             >
-              <Link to="register">Register</Link>
-            </button>
-            <br />
-            <button
-              style={{
-                textDecoration: "none",
-                color: "white",
-                background: "#03a9f4",
-                outline: "none",
-              }}
-            >
-              <Link to="/admin">Admin</Link>
+              <Link to="/login">Login</Link>
             </button>
           </li>
         ) : (

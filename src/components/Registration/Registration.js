@@ -1,20 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../App";
+import { AuthContext, UserContext } from "../../App";
 import "./Registration.css";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
+import logo from "../../Images/logos/Group 1329.png";
 
 const Registration = () => {
+  const history = useHistory();
   const { taskName } = useParams();
+  const [loggedInUser] = useContext(AuthContext);
+  const [showTasks, setShowTasks] = useState({});
+
+  const [tasks] = useContext(UserContext);
+
   const { register, handleSubmit, errors } = useForm();
-  const [loggedInUser, setLoggedInUser] = useContext(AuthContext);
 
   const [selectedDate, setSelectedDate] = useState({
     checkIn: new Date(),
@@ -23,6 +28,13 @@ const Registration = () => {
   const [description, setDescription] = useState({
     description: "",
   });
+
+  useEffect(() => {
+    const task = tasks.find((taskImage) => taskImage.name === taskName);
+    setShowTasks(task);
+  }, [taskName, tasks]);
+
+  const showImg = showTasks.img;
 
   const handleCheckInDate = (date) => {
     const newDates = { ...selectedDate };
@@ -42,6 +54,7 @@ const Registration = () => {
       ...selectedDate,
       ...description,
       taskName,
+      showImg,
     };
     fetch("http://localhost:5000/addTask", {
       method: "POST",
@@ -49,13 +62,18 @@ const Registration = () => {
       body: JSON.stringify(newTask),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then((result) => {
+        if (result === true) {
+          history.push("/userTasks");
+        }
       });
   };
 
   return (
     <>
+      <Link to="/home">
+        <img style={{ width: "200px" }} src={logo} alt="" />
+      </Link>
       <div className="container">
         <form onSubmit={handleSubmit(handleRegister)}>
           <div className="inputBox">
@@ -114,9 +132,7 @@ const Registration = () => {
               placeholder="Organize books at the library"
             />
           </div>
-          
-            <input type="submit" value="Register" />
-          
+          <input type="submit" value="Register" />
         </form>
       </div>
     </>
@@ -124,7 +140,3 @@ const Registration = () => {
 };
 
 export default Registration;
-
-// <Link to="/userTasks">
-//             <input type="submit" value="Register" />
-//           </Link>
