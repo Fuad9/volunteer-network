@@ -8,20 +8,24 @@ const UserTasks = () => {
 
   // to show user data by their email using JWT token
   useEffect(() => {
-    fetch("http://localhost:5000/showUserTasks?email=" + loggedInUser.email, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },
-    })
+    fetch(
+      "https://sheltered-citadel-68723.herokuapp.com/showUserTasks?email=" +
+        loggedInUser.email,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setUserTasks(data));
   }, [loggedInUser.email]);
 
   // to delete user data
   const cancelTask = (id) => {
-    fetch(`http://localhost:5000/delete/${id}`, {
+    fetch(`https://sheltered-citadel-68723.herokuapp.com/delete/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

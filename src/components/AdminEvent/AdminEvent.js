@@ -25,10 +25,6 @@ const AdminEvent = () => {
     description: "",
   });
 
-  // const [image, setImage] = useState({
-  //   image: "",
-  // });
-
   const handleName = (e) => {
     const newName = { ...name };
     newName.name = e.target.value;
@@ -47,12 +43,6 @@ const AdminEvent = () => {
     setSelectedDate(newDates);
   };
 
-  // const handleImg = (e) => {
-  //   const newImg = { ...image };
-  //   newImg.image = e.target.value;
-  //   setImage(newImg);
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const newEvent = {
@@ -60,7 +50,7 @@ const AdminEvent = () => {
       ...description,
       ...selectedDate,
     };
-    fetch("http://localhost:5000/addEvent", {
+    fetch("https://sheltered-citadel-68723.herokuapp.com/addEvent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newEvent),
@@ -132,7 +122,7 @@ const AdminEvent = () => {
           <button className="btn btn-success">Submit</button>
         </form>
         <form
-          action="http://localhost:5000/uploadImage"
+          action="https://sheltered-citadel-68723.herokuapp.com/uploadImage"
           method="POST"
           className="mt-5"
         >

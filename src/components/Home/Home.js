@@ -8,7 +8,7 @@ const Home = () => {
 
   // to fetch all data
   useEffect(() => {
-    fetch("http://localhost:5000/showTasks")
+    fetch("https://sheltered-citadel-68723.herokuapp.com/showTasks")
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, [setTasks]);

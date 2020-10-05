@@ -56,7 +56,7 @@ const Registration = () => {
       taskName,
       showImg,
     };
-    fetch("http://localhost:5000/addTask", {
+    fetch("https://sheltered-citadel-68723.herokuapp.com/addTask", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTask),

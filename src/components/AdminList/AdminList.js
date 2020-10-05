@@ -10,14 +10,14 @@ const AdminList = () => {
 
   // to fetch registered volunteers emails
   useEffect(() => {
-    fetch("http://localhost:5000/showUser")
+    fetch("https://sheltered-citadel-68723.herokuapp.com/showUser")
       .then((res) => res.json())
       .then((data) => setUserInfos(data));
   }, []);
 
   // to delete user data
   const deleteTask = (id) => {
-    fetch(`http://localhost:5000/deleteTask/${id}`, {
+    fetch(`https://sheltered-citadel-68723.herokuapp.com/deleteTask/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
