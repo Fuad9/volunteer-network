@@ -7,8 +7,8 @@ import "./Login.css";
 import logo from "../../Images/logos/Group 1329.png";
 
 const Login = () => {
-  const [setLoggedInUser] = useContext(AuthContext);
-  const [setUser] = useState({
+  const [loggedInUser, setLoggedInUser] = useContext(AuthContext);
+  const [user, setUser] = useState({
     isSignedIn: false,
     name: "",
     email: "",
