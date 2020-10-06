@@ -59,7 +59,10 @@ const AdminList = () => {
             </div>
             <div className="col">
               {userInfos.map((userInfo) => (
-                <div className="row-md-3 d-flex justify-content-between">
+                <div
+                  className="row-md-3 d-flex justify-content-between"
+                  key={Math.random()}
+                >
                   <p>{userInfo.name}</p>
                   <p>{userInfo.email}</p>
                   <p>{new Date(userInfo.checkIn).toDateString("dd/MM/yyyy")}</p>

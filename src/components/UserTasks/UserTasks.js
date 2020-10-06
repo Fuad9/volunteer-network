@@ -45,7 +45,7 @@ const UserTasks = () => {
       ) : (
         <div className="row">
           {userTasks.map((userTask) => (
-            <div className="col-sm-6 col-md-4 col-lg-3">
+            <div className="col-sm-6 col-md-4 col-lg-3" key={Math.random()}>
               <img style={{ height: "300px" }} src={userTask.showImg} alt="" />
               <h4>{new Date(userTask.checkIn).toDateString("dd/MM/yyyy")}</h4>
               <h4>{userTask.taskName}</h4>

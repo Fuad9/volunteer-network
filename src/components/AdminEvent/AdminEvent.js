@@ -68,7 +68,12 @@ const AdminEvent = () => {
       <div className="col-sm-3 col-md-3 col-lg-4">
         <div className="d-flex flex-column">
           <Link to="/home">
-            <img style={{ width: "200px" }} src={logo} alt="" />
+            <img
+              className="img-fluid"
+              style={{ width: "200px" }}
+              src={logo}
+              alt=""
+            />
           </Link>
           <Link to="/admin">
             <img src={people} alt="" />
@@ -127,7 +132,7 @@ const AdminEvent = () => {
           className="mt-5"
         >
           <label htmlFor="input">Banner</label>
-          <input type="file" enctype="multipart/form-data" name="myImage" />
+          <input type="file" encType="multipart/form-data" name="myImage" />
           <input type="submit" value="upload Image" />
         </form>
       </div>
