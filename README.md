@@ -3,8 +3,12 @@
 # Volunteer Network
 
 Live: [Click here](https://volunteer-network-ef243.web.app/).
-<br/>
+<br />
 Code: [Server](https://github.com/Fuad9/volunteer-network-server)
+<br />
+Resume: [Click here](https://drive.google.com/file/d/1mfl4mCKZxq-pfXHjtHf1CU-Fgbjs3x5G/view?usp=sharing)
+<br />
+LinkedIn: [Click here](https://www.linkedin.com/in/irtizaalfuad/)
 
 ## About this project:
 
