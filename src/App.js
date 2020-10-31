@@ -14,45 +14,45 @@ export const AuthContext = createContext();
 export const UserContext = createContext();
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState(false);
-  const [tasks, setTasks] = useState([]);
+    const [loggedInUser, setLoggedInUser] = useState(false);
+    const [tasks, setTasks] = useState([]);
 
-  return (
-    <AuthContext.Provider value={[loggedInUser, setLoggedInUser]}>
-      <UserContext.Provider value={[tasks, setTasks]}>
-        <div className="App">
-          <Router>
-            <Switch>
-              <Route path="/home">
-                <Home />
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <PrivateRoute path="/register/:taskName">
-                <Registration />
-              </PrivateRoute>
-              <Route path="/userTasks">
-                <UserTasks />
-              </Route>
-              <PrivateRoute path="/admin">
-                <AdminList />
-              </PrivateRoute>
-              <Route path="/addEvent">
-                <AdminEvent />
-              </Route>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="*">
-                <NotFound />
-              </Route>
-            </Switch>
-          </Router>
-        </div>
-      </UserContext.Provider>
-    </AuthContext.Provider>
-  );
+    return (
+        <AuthContext.Provider value={[loggedInUser, setLoggedInUser]}>
+            <UserContext.Provider value={[tasks, setTasks]}>
+                <div className="App">
+                    <Router>
+                        <Switch>
+                            <Route path="/home">
+                                <Home />
+                            </Route>
+                            <Route path="/login">
+                                <Login />
+                            </Route>
+                            <PrivateRoute path="/register/:taskName">
+                                <Registration />
+                            </PrivateRoute>
+                            <Route path="/userTasks">
+                                <UserTasks />
+                            </Route>
+                            <PrivateRoute path="/admin">
+                                <AdminList />
+                            </PrivateRoute>
+                            <PrivateRoute path="/addEvent">
+                                <AdminEvent />
+                            </PrivateRoute>
+                            <Route exact path="/">
+                                <Home />
+                            </Route>
+                            <Route path="*">
+                                <NotFound />
+                            </Route>
+                        </Switch>
+                    </Router>
+                </div>
+            </UserContext.Provider>
+        </AuthContext.Provider>
+    );
 }
 
 export default App;

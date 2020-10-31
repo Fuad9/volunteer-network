@@ -1,105 +1,42 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Nav, Navbar } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../App";
-import "./Header.css";
 import logo from "../../Images/logos/Group 1329.png";
 
 const Header = () => {
-  const [loggedInUser] = useContext(AuthContext);
+    const [loggedInUser] = useContext(AuthContext);
 
-  const handleSlide = () => {
-    document.querySelector(".nav-links").classList.toggle("nav-active");
-    document.querySelectorAll(".nav-links li").forEach((link, index) => {
-      if (link.style.animation) {
-        link.style.animation = "";
-      } else {
-        link.style.animation = `navLinkFade 0.5s ease forwards ${
-          index / 7 + 0.5
-        }s`;
-      }
-    });
-    document.querySelector(".nav-menu").classList.toggle("toggle");
-  };
-
-  return (
-    <nav>
-      <div className="logo">
-        <Link to="/home">
-          <img src={logo} alt="" style={{ width: "120px" }} />
-        </Link>
-      </div>
-      <ul className="nav-links">
-        <li>
-          <Link to="/home" style={{ textDecoration: "none", color: "white" }}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/donation"
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            Donation
-          </Link>
-        </li>
-        <li>
-          <Link to="/blog" style={{ textDecoration: "none", color: "white" }}>
-            Blog
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/userTasks"
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            Events
-          </Link>
-        </li>
-        <li>
-          <button
-            style={{
-              textDecoration: "none",
-              color: "white",
-              background: "#03a9f4",
-              outline: "none",
-            }}
-          >
-            <Link to="/admin">Admin</Link>
-          </button>
-        </li>
-        {!loggedInUser ? (
-          <li className="d-flex">
-            <button
-              style={{
-                textDecoration: "none",
-                color: "white",
-                background: "#03a9f4",
-                outline: "none",
-              }}
-            >
-              <Link to="/login">Login</Link>
-            </button>
-          </li>
-        ) : (
-          <>
-            <li style={{ color: "white" }}>{loggedInUser.name}</li>
-            <li>
-              <img
-                style={{ width: "80px", borderRadius: "50%" }}
-                src={loggedInUser.photo}
-                alt=""
-              />
-            </li>
-          </>
-        )}
-      </ul>
-      <div className="nav-menu" onClick={handleSlide}>
-        <div className="link1"></div>
-        <div className="link2"></div>
-        <div className="link3"></div>
-      </div>
-    </nav>
-  );
+    return (
+        <>
+            <Navbar expand="lg" className="mx-4">
+                <Navbar.Brand href="/home">
+                    <img src={logo} alt="" style={{ width: "120px" }} />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ml-auto">
+                        <NavLink to="/home" className="mr-4 font-weight-bold">
+                            Home
+                        </NavLink>
+                        <NavLink to="/userTasks" className="mr-4 font-weight-bold">
+                            Events
+                        </NavLink>
+                        {!loggedInUser ? (
+                            <NavLink className="text-decoration-none" to="/login">
+                                <button class="btn btn-primary text-white mr-4">Login</button>
+                            </NavLink>
+                        ) : (
+                            <p className="font-weight-bold mr-4">{loggedInUser.name}</p>
+                        )}
+                        <NavLink className="text-decoration-none" to="/admin">
+                            <button class="btn btn-dark text-white">Admin</button>
+                        </NavLink>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        </>
+    );
 };
 
 export default Header;
